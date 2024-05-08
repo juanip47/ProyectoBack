@@ -37,7 +37,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 	public List<ArticuloDto> getArticulos() {
 		List<ArticuloDto> articulosDto = articuloRepository.obtenerArticulos().stream()
 				.map(articulo -> {
-	                Seccion seccion = seccionRepository.findById(articulo.getSeccion().getIdSeccion()).orElse(null);
+	                Seccion seccion = seccionRepository.getSeccionById(articulo.getSeccion().getIdSeccion());
 	                return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
 	            })
 		.collect(Collectors.toList());
@@ -56,7 +56,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 	public List<ArticuloDto> obtenerArticulosPorSeccion(Long idSeccion) {
 		List<ArticuloDto> articulosDto = articuloRepository.obtenerArticulosPorSeccionId(idSeccion).stream()
 				.map(articulo -> {
-	                Seccion seccion = seccionRepository.findById(articulo.getSeccion().getIdSeccion()).orElse(null);
+	                Seccion seccion = seccionRepository.getSeccionById(articulo.getSeccion().getIdSeccion());
 	                return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
 	            })
 		.collect(Collectors.toList());

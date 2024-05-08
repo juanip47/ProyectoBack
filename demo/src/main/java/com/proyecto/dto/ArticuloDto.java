@@ -1,6 +1,6 @@
 package com.proyecto.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.proyecto.model.Seccion;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +22,6 @@ public class ArticuloDto{
 	private Integer cantidadArticulo;
 	
 	private Double precioArticulo;
-	
-	@JsonIgnore
+
 	private Seccion seccion;
 }

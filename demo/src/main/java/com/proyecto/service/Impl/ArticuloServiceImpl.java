@@ -37,8 +37,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 	public List<ArticuloDto> getArticulos() {
 		List<ArticuloDto> articulosDto = articuloRepository.obtenerArticulos().stream()
 				.map(articulo -> {
-	                Seccion seccion = seccionRepository.getSeccionById(articulo.getSeccion().getIdSeccion());
-	                return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
+	                return articuloMapper.mapArticuloToArticuloDto(articulo);
 	            })
 		.collect(Collectors.toList());
 		
@@ -56,8 +55,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 	public List<ArticuloDto> obtenerArticulosPorSeccion(Long idSeccion) {
 		List<ArticuloDto> articulosDto = articuloRepository.obtenerArticulosPorSeccionId(idSeccion).stream()
 				.map(articulo -> {
-	                Seccion seccion = seccionRepository.getSeccionById(articulo.getSeccion().getIdSeccion());
-	                return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
+	                return articuloMapper.mapArticuloToArticuloDto(articulo);
 	            })
 		.collect(Collectors.toList());
 		
@@ -97,7 +95,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 					, articulo.getSeccion().getIdSeccion());;
 		}
 		
-		return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
+		return articuloMapper.mapArticuloToArticuloDto(articulo);
 	}
 
 	@Override
@@ -109,8 +107,13 @@ public class ArticuloServiceImpl implements ArticuloService {
 		articulo.setDescripcionArticulo(articuloDto.getDescripcionArticulo());
 		articulo.setCantidadArticulo(articuloDto.getCantidadArticulo());
 		articulo.setPrecioArticulo(articuloDto.getPrecioArticulo());
+		
+		Seccion seccion = new Seccion();
+		
+		if (articuloDto.getSeccion() != null) {
+			seccion = seccionRepository.getSeccionById(articuloDto.getSeccion().getIdSeccion());
+		}
 				
-		Seccion seccion = seccionRepository.getSeccionById(articuloDto.getSeccion().getIdSeccion());
 		
 		if (seccion == null) {
 			Seccion seccion2 = new Seccion();
@@ -121,7 +124,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 			
 			articulo.setSeccion(seccion2);
 		} else {
-			articulo.setSeccion(seccion);
+			articulo.setSeccion(articuloDto.getSeccion());
 		}
 		
 		Articulo articuloEncontrado = articuloRepository.buscarArticuloPorDescripcionConId(articulo.getDescripcionArticulo()
@@ -136,7 +139,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 					, articulo.getIdArticulo());
 		}
 		
-		return articuloMapper.mapArticuloToArticuloDto(articulo, seccion);
+		return articuloMapper.mapArticuloToArticuloDto(articulo);
 	}
 	
 }

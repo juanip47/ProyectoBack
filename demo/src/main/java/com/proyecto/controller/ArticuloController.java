@@ -36,7 +36,7 @@ public class ArticuloController {
   @DeleteMapping("/articulo")
   public ResponseEntity<String> deleteArticulo(@RequestParam("idArticulo") Integer idArticulo) {
 	  articuloService.deleteArticulo(idArticulo);
-	  return ResponseEntity.ok(GeneralConstants.ELIMINACION_ARTICULO);
+	  return ResponseEntity.ok("Artículo" + GeneralConstants.ELIMINACION);
   }
   
   @GetMapping("/articulos/seccion")
@@ -49,14 +49,14 @@ public class ArticuloController {
   public ResponseEntity<String> insertArticulo(@RequestBody ArticuloDto articuloDto){
 	  articuloService.insertArticulo(articuloDto);
 	  
-	  return ResponseEntity.ok(GeneralConstants.CREACION_ARTICULO);
+	  return ResponseEntity.ok("Artículo" + GeneralConstants.CREACION);
   }
   
   @PutMapping("/editarArticulo")
   public ResponseEntity<String> editArticuloPorId(@RequestBody ArticuloDto articuloDto){
 	  articuloService.editArticuloPorId(articuloDto);
 	  
-	  return ResponseEntity.ok(GeneralConstants.MODIFICACION_ARTICULO);
+	  return ResponseEntity.ok("Artículo" + GeneralConstants.MODIFICACION);
   }
   
 }

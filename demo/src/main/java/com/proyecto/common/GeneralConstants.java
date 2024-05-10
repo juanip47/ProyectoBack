@@ -5,9 +5,9 @@ public class GeneralConstants {
 	
 	public static final String TIENDA_VALUE = "/tienda";
 	
-	public static final String CREACION_ARTICULO = "Artículo creado correctamente!!";
+	public static final String CREACION = " creado correctamente!!";
 	
-	public static final String ELIMINACION_ARTICULO = "Artículo eliminado correctamente!!";
+	public static final String ELIMINACION = " eliminado correctamente!!";
 	
-	public static final String MODIFICACION_ARTICULO = "Artículo modificado correctamente!!";
+	public static final String MODIFICACION = " modificado correctamente!!";
 }

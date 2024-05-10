@@ -8,4 +8,12 @@ public interface SeccionService {
 
 	List<SeccionDto> getSecciones();
 	
+	void deleteSeccion(Long idSeccion);
+	
+//	List<ArticuloDto> obtenerArticulosPorSeccion(Long idSeccion);
+//	
+//	ArticuloDto insertArticulo(ArticuloDto articuloDto);
+//	
+//	ArticuloDto editArticuloPorId(ArticuloDto articuloDto);
+	
 }

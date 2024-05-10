@@ -12,6 +12,8 @@ import com.proyecto.model.Seccion;
 import com.proyecto.repository.SeccionRepository;
 import com.proyecto.service.SeccionService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class SeccionServiceImpl implements SeccionService {
 	@Autowired
@@ -29,5 +31,12 @@ public class SeccionServiceImpl implements SeccionService {
 	            .map((seccion) -> seccionMapper.mapSeccionToSeccionDto(seccion))
 	            .collect(Collectors.toList());
 	    return seccionesDto;
+	}
+
+	@Override
+	@Transactional
+	public void deleteSeccion(Long idSeccion) {
+		seccionRepository.eliminarSeccionPorId(idSeccion);
+		
 	}
 }

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class SeccionDto {
 	
 	private Long idSeccion;
+	
 	private String nombreSeccion;
 	
 }

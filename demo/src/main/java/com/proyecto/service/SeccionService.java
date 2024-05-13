@@ -10,9 +10,7 @@ public interface SeccionService {
 	
 	void deleteSeccion(Long idSeccion);
 	
-//	List<ArticuloDto> obtenerArticulosPorSeccion(Long idSeccion);
-//	
-//	ArticuloDto insertArticulo(ArticuloDto articuloDto);
+	SeccionDto insertSeccion(SeccionDto seccionDto);
 //	
 //	ArticuloDto editArticuloPorId(ArticuloDto articuloDto);
 	

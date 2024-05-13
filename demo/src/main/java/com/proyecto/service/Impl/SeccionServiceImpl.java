@@ -39,4 +39,23 @@ public class SeccionServiceImpl implements SeccionService {
 		seccionRepository.eliminarSeccionPorId(idSeccion);
 		
 	}
+
+	@Override
+	@Transactional
+	public SeccionDto insertSeccion(SeccionDto seccionDto) {
+		Seccion seccion = new Seccion();
+		
+		seccion.setNombreSeccion(seccionDto.getNombreSeccion());
+		
+		Seccion seccionEncontrada = seccionRepository.buscarSeccionPorNombreSeccion(seccion.getNombreSeccion());
+		
+		if (seccionEncontrada != null) {
+			throw new RuntimeException("La sección ya existe");
+		} else {
+			seccionRepository.insertSeccion(seccion.getNombreSeccion());
+		}
+		
+		
+		return seccionMapper.mapSeccionToSeccionDto(seccion);
+	}
 }

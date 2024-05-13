@@ -38,26 +38,13 @@ public class SeccionController {
 		seccionService.deleteSeccion(idSeccion);
 		return ResponseEntity.ok("Sección" + GeneralConstants.ELIMINACION);
 	}
-	
-	
-//	@DeleteMapping("/articulo")
-//	  public ResponseEntity<String> deleteArticulo(@RequestParam("idArticulo") Integer idArticulo) {
-//		  articuloService.deleteArticulo(idArticulo);
-//		  return ResponseEntity.ok(GeneralConstants.ELIMINACION_ARTICULO);
-//	  }
-//	  
-//	  @GetMapping("/articulos/seccion")
-//	  public ResponseEntity<List<ArticuloDto>> obtenerArticulosPorSeccion(@RequestParam("idSeccion") Long idSeccion){
-//		  List<ArticuloDto> articulosFiltrados = articuloService.obtenerArticulosPorSeccion(idSeccion);
-//		  return new ResponseEntity<>(articulosFiltrados, HttpStatus.OK);
-//	  }
-//	  
-//	  @PostMapping("/nuevoArticulo")
-//	  public ResponseEntity<String> insertArticulo(@RequestBody ArticuloDto articuloDto){
-//		  articuloService.insertArticulo(articuloDto);
-//		  
-//		  return ResponseEntity.ok(GeneralConstants.CREACION_ARTICULO);
-//	  }
+
+	@PostMapping("/nuevaSeccion")
+	public ResponseEntity<String> insertArticulo(@RequestBody SeccionDto seccionDto){
+		seccionService.insertSeccion(seccionDto);
+		  
+		return ResponseEntity.ok("Sección" + GeneralConstants.CREACION);
+	}
 //	  
 //	  @PutMapping("/editarArticulo")
 //	  public ResponseEntity<String> editArticuloPorId(@RequestBody ArticuloDto articuloDto){

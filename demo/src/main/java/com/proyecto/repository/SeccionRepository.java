@@ -25,4 +25,13 @@ public interface SeccionRepository extends CrudRepository<Seccion, Long>{
 	@Modifying
 	@Query("DELETE from Seccion s WHERE s.idSeccion=:idSeccion")
 	void eliminarSeccionPorId(@Param("idSeccion") Long idSeccion);
+	
+	//Insertar nuevas secciones
+	@Modifying
+	@Query(value = "INSERT into secciones (nombre_seccion) VALUES (:nombreSeccion)", nativeQuery = true)
+	void insertSeccion(@Param("nombreSeccion") String nombreSeccion);
+	
+	//Buscar seccion para comprobar si ya existe en la BBDD para hacer inserts (por nombreSeccion)
+	@Query("SELECT s from Seccion s WHERE s.nombreSeccion=:nombreSeccion")
+	public Seccion buscarSeccionPorNombreSeccion(@Param("nombreSeccion") String nombreSeccion);
 }

@@ -21,4 +21,22 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String>{
 	@Modifying
 	@Query("DELETE from Usuario u WHERE u.correoUsuario=:correoUsuario")
 	void deleteUsuarioPorCorreo(@Param("correoUsuario") String correoUsuario);
+	
+	//Insertar nuevos usuarios
+	@Modifying
+	@Query(value = "INSERT into usuarios (correo_usuario, contrasenia_usuario) VALUES "
+			+ "(:correoUsuario, :contraseniaUsuario)", nativeQuery = true)
+	void insertUsuario(@Param("correoUsuario") String correoUsuario
+			,@Param("contraseniaUsuario") String contraseniaUsuario);
+	
+	//Buscar usuario para comprobar si ya existe en la BBDD para hacer inserts (por correoUsuario)
+	@Query("SELECT u from Usuario u WHERE u.correoUsuario=:correoUsuario")
+	Usuario buscarUsuarioPorCorreoUsuario(@Param("correoUsuario") String correoUsuario);
+	
+	//Modificar usuarios que ya existen en la BBDD (por su correo)
+	@Modifying
+	@Query(value = "UPDATE usuarios SET correo_usuario=:correoUsuario, contrasenia_usuario=:contraseniaUsuario "
+			+ "WHERE correo_usuario=:correoUsuario", nativeQuery = true)
+	void editUsuarioPorCorreo(@Param("correoUsuario") String correoUsuario
+			,@Param("contraseniaUsuario") String contraseniaUsuario);
 }

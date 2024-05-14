@@ -38,4 +38,16 @@ public class UsuarioController {
 		usuarioService.deleteUsuario(correoUsuario);
 		return ResponseEntity.ok("Usuario" + GeneralConstants.ELIMINACION);
 	}
+	
+	@PostMapping("/nuevoUsuario")
+	ResponseEntity<String> insertUsuario(@RequestBody UsuarioDto usuarioDto) {
+		usuarioService.insertUsuario(usuarioDto);
+		return ResponseEntity.ok("Usuario" + GeneralConstants.CREACION);
+	}
+	
+	@PutMapping("/editarUsuario")
+	ResponseEntity<String> editUsuario(@RequestBody UsuarioDto usuarioDto) {
+		usuarioService.editUsuario(usuarioDto);
+		return ResponseEntity.ok("Usuario" + GeneralConstants.CREACION);
+	}
 }

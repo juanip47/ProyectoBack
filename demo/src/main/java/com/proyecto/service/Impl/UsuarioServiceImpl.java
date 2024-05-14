@@ -38,4 +38,42 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void deleteUsuario(String correoUsuario) {
 		usuarioRepository.deleteUsuarioPorCorreo(correoUsuario);		
 	}
+
+	@Override
+	@Transactional
+	public UsuarioDto insertUsuario(UsuarioDto usuarioDto) {
+		Usuario usuario = new Usuario();
+		
+		usuario.setCorreoUsuario(usuarioDto.getCorreoUsuario());
+		usuario.setContraseniaUsuario(usuarioDto.getContraseniaUsuario());
+		
+		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuario.getCorreoUsuario());
+		
+		if (usuarioEncontrado != null) {
+			throw new RuntimeException("El usuario ya existe");
+		} else {
+			usuarioRepository.insertUsuario(usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
+		}
+		
+		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
+	}
+
+	@Override
+	@Transactional
+	public UsuarioDto editUsuario(UsuarioDto usuarioDto) {
+		Usuario usuario = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuarioDto.getCorreoUsuario());
+		
+		usuario.setCorreoUsuario(usuarioDto.getCorreoUsuario());
+		usuario.setContraseniaUsuario(usuarioDto.getContraseniaUsuario());
+		
+		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuario.getCorreoUsuario());
+		
+		if (usuarioEncontrado != null) {
+			throw new RuntimeException("El usuario ya existe");
+		} else {
+			usuarioRepository.editUsuarioPorCorreo(usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
+		}
+		
+		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
+	}
 }

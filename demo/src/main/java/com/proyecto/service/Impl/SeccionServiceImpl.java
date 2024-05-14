@@ -37,7 +37,6 @@ public class SeccionServiceImpl implements SeccionService {
 	@Transactional
 	public void deleteSeccion(Long idSeccion) {
 		seccionRepository.eliminarSeccionPorId(idSeccion);
-		
 	}
 
 	@Override

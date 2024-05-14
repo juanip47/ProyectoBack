@@ -6,8 +6,10 @@ import org.springframework.stereotype.Component;
 
 import com.proyecto.model.Articulo;
 import com.proyecto.model.Seccion;
+import com.proyecto.model.Usuario;
 import com.proyecto.repository.ArticuloRepository;
 import com.proyecto.repository.SeccionRepository;
+import com.proyecto.repository.UsuarioRepository;
 
 @Component
 public class InitialData implements CommandLineRunner{
@@ -16,6 +18,9 @@ public class InitialData implements CommandLineRunner{
 	
 	@Autowired
 	SeccionRepository seccionRepository;
+	
+	@Autowired
+	UsuarioRepository usuarioRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -47,6 +52,11 @@ public class InitialData implements CommandLineRunner{
 //		macarronesGallo.setCantidadArticulo(100);
 //		macarronesGallo.setSeccion(pasta);
 //		articuloRepository.save(macarronesGallo);
+		
+//		Usuario hector = new Usuario();
+//		hector.setCorreoUsuario("sanchorodriguezhector@gmail.com");
+//		hector.setContraseniaUsuario("admin");
+//		usuarioRepository.save(hector);
 		
 		
 	}

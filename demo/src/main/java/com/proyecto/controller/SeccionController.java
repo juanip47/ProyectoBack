@@ -40,16 +40,16 @@ public class SeccionController {
 	}
 
 	@PostMapping("/nuevaSeccion")
-	public ResponseEntity<String> insertArticulo(@RequestBody SeccionDto seccionDto){
+	public ResponseEntity<String> insertSeccion(@RequestBody SeccionDto seccionDto){
 		seccionService.insertSeccion(seccionDto);
 		  
 		return ResponseEntity.ok("Sección" + GeneralConstants.CREACION);
 	}
-//	  
-//	  @PutMapping("/editarArticulo")
-//	  public ResponseEntity<String> editArticuloPorId(@RequestBody ArticuloDto articuloDto){
-//		  articuloService.editArticuloPorId(articuloDto);
-//		  
-//		  return ResponseEntity.ok(GeneralConstants.MODIFICACION_ARTICULO);
-//	  }
+	  
+	  @PutMapping("/editarSeccion")
+	  public ResponseEntity<String> editSeccionPorId(@RequestBody SeccionDto seccionDto){
+		  seccionService.editSeccionPorId(seccionDto);
+		  
+		  return ResponseEntity.ok("Sección" + GeneralConstants.MODIFICACION);
+	  }
 }

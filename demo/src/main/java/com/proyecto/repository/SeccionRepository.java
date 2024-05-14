@@ -34,4 +34,16 @@ public interface SeccionRepository extends CrudRepository<Seccion, Long>{
 	//Buscar seccion para comprobar si ya existe en la BBDD para hacer inserts (por nombreSeccion)
 	@Query("SELECT s from Seccion s WHERE s.nombreSeccion=:nombreSeccion")
 	public Seccion buscarSeccionPorNombreSeccion(@Param("nombreSeccion") String nombreSeccion);
+	
+	//Buscar seccion para comprobar si ya existe en la BBDD para hacer updates(por nombreSeccion/idSeccion)
+	@Query("SELECT s from Seccion s WHERE s.nombreSeccion=:nombreSeccion and s.idSeccion!=:idSeccion")
+	public Seccion buscarSeccionPorNombreSeccionConId(@Param("nombreSeccion") String nombreSeccion
+			,@Param("idSeccion") Long idSeccion);
+		
+	//Modificar secciones que ya existen en la BBDD (por su id)
+		@Modifying
+		@Query(value = "UPDATE secciones SET nombre_seccion=:nombreSeccion"
+				+ " WHERE id_seccion=:idSeccion", nativeQuery = true)
+		void editSeccionPorId(@Param("nombreSeccion") String nombreSeccion
+				,@Param("idSeccion") Long idSeccion);
 }

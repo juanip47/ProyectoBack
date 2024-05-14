@@ -55,6 +55,26 @@ public class SeccionServiceImpl implements SeccionService {
 			seccionRepository.insertSeccion(seccion.getNombreSeccion());
 		}
 		
+		return seccionMapper.mapSeccionToSeccionDto(seccion);
+	}
+
+	@Override
+	@Transactional
+	public SeccionDto editSeccionPorId(SeccionDto seccionDto) {
+		Seccion seccion = seccionRepository.getSeccionById(seccionDto.getIdSeccion());
+		
+		seccion.setNombreSeccion(seccionDto.getNombreSeccion());
+		
+		Seccion seccionEncontrada = seccionRepository.buscarSeccionPorNombreSeccionConId(seccion.getNombreSeccion()
+				, seccion.getIdSeccion());
+				
+		System.out.println(seccionEncontrada);
+		
+		if (seccionEncontrada != null) {
+			throw new RuntimeException("La sección ya existe");
+		} else {
+			seccionRepository.editSeccionPorId(seccion.getNombreSeccion(), seccion.getIdSeccion());
+		}
 		
 		return seccionMapper.mapSeccionToSeccionDto(seccion);
 	}

@@ -39,7 +39,7 @@ public interface ArticuloRepository extends CrudRepository<Articulo, Integer> {
 	@Query("SELECT a from Articulo a WHERE a.descripcionArticulo=:descripcionArticulo")
 	public Articulo buscarArticuloPorDescripcion(@Param("descripcionArticulo") String descripcionArticulo);
 	
-	//Buscar articulo para comprobar si ya existe en la BBDD para hacer updates(por descripcionArticulo) 
+	//Buscar articulo para comprobar si ya existe en la BBDD para hacer updates(por descripcionArticulo/idArticulo) 
 	@Query("SELECT a from Articulo a WHERE a.descripcionArticulo=:descripcionArticulo AND a.idArticulo!=:idArticulo")
 	public Articulo buscarArticuloPorDescripcionConId(@Param("descripcionArticulo") String descripcionArticulo
 			,@Param("idArticulo") Integer idArticulo);

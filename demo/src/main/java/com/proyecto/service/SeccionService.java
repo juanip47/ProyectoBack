@@ -11,7 +11,7 @@ public interface SeccionService {
 	void deleteSeccion(Long idSeccion);
 	
 	SeccionDto insertSeccion(SeccionDto seccionDto);
-//	
-//	ArticuloDto editArticuloPorId(ArticuloDto articuloDto);
+	
+	SeccionDto editSeccionPorId(SeccionDto seccionDto);
 	
 }

@@ -8,6 +8,8 @@ public interface UsuarioService {
 	
 	List<UsuarioDto> getUsuarios();
 	
+	UsuarioDto getUsuarioPorCorreo(String correoUsuario);
+	
 	void deleteUsuario(String correoUsuario);
 	
 	UsuarioDto insertUsuario(UsuarioDto usuarioDto);

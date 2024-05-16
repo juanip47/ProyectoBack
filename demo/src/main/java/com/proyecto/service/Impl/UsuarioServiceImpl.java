@@ -76,4 +76,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
 	}
+
+	@Override
+	public UsuarioDto getUsuarioPorCorreo(String correoUsuario) {
+		Usuario usuario = usuarioRepository.buscarUsuarioPorCorreoUsuario(correoUsuario);
+		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
+	}
 }

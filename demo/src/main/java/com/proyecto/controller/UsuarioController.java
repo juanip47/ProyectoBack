@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +32,12 @@ public class UsuarioController {
 	ResponseEntity<List<UsuarioDto>> getUsuarios() {
 		List<UsuarioDto> usuarios = usuarioService.getUsuarios();
 		return new ResponseEntity<>(usuarios, HttpStatus.OK);
+	}
+	
+	@GetMapping("/usuarioPorCorreo")
+	ResponseEntity<UsuarioDto> getUsuarioPorCorreo(@RequestParam("correoUsuario") String correoUsuario) {
+		UsuarioDto usuario = usuarioService.getUsuarioPorCorreo(correoUsuario);
+		return new ResponseEntity<>(usuario, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/usuario")

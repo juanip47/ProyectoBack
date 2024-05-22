@@ -12,6 +12,8 @@ public interface ArticuloService {
 	
 	List<ArticuloDto> obtenerArticulosPorSeccion(Long idSeccion);
 	
+	List<ArticuloDto> obtenerArticulosPorMarca(Integer idMarca);
+	
 	ArticuloDto insertArticulo(ArticuloDto articuloDto);
 	
 	ArticuloDto editArticuloPorId(ArticuloDto articuloDto);

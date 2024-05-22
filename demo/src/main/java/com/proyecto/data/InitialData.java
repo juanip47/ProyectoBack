@@ -37,11 +37,24 @@ public class InitialData implements CommandLineRunner{
 //		pasta.setNombreSeccion("Pasta");
 //		seccionRepository.save(pasta);
 //		
+//		Marca cocaCola = new Marca();
+//		cocaCola.setNombreMarca("The Coca-Cola Company");
+//		marcaRepository.save(cocaCola);
+//		
+//		Marca mahou = new Marca();
+//		mahou.setNombreMarca("Mahou-San Miguel");
+//		marcaRepository.save(mahou);
+//		
+//		Marca gallo = new Marca();
+//		gallo.setNombreMarca("Grupo Gallo");
+//		marcaRepository.save(gallo);
+//		
 //		Articulo cervezaMahouLata = new Articulo(); 
 //		cervezaMahouLata.setDescripcionArticulo("Cerveza Mahou lata"); 
 //		cervezaMahouLata.setPrecioArticulo(0.94); 
 //		cervezaMahouLata.setCantidadArticulo(25);
 //		cervezaMahouLata.setSeccion(bebidas);
+//		cervezaMahouLata.setMarca(mahou);
 //		articuloRepository.save(cervezaMahouLata);
 //		
 //		Articulo cocaCola2L = new Articulo();
@@ -49,6 +62,7 @@ public class InitialData implements CommandLineRunner{
 //		cocaCola2L.setPrecioArticulo(2.99);
 //		cocaCola2L.setCantidadArticulo(135);
 //		cocaCola2L.setSeccion(bebidas);
+//		cocaCola2L.setMarca(cocaCola);
 //		articuloRepository.save(cocaCola2L);
 //		
 //		Articulo macarronesGallo = new Articulo(); 
@@ -56,16 +70,13 @@ public class InitialData implements CommandLineRunner{
 //		macarronesGallo.setPrecioArticulo(2.99); 
 //		macarronesGallo.setCantidadArticulo(100);
 //		macarronesGallo.setSeccion(pasta);
+//		macarronesGallo.setMarca(gallo);
 //		articuloRepository.save(macarronesGallo);
 		
 //		Usuario hector = new Usuario();
 //		hector.setCorreoUsuario("sanchorodriguezhector@gmail.com");
 //		hector.setContraseniaUsuario("admin");
 //		usuarioRepository.save(hector);
-		
-//		Marca cocaCola = new Marca();
-//		cocaCola.setNombreMarca("The Coca-Cola Company");
-//		marcaRepository.save(cocaCola);
 		
 		
 	}

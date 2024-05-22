@@ -1,6 +1,7 @@
 package com.proyecto.dto;
 
 
+import com.proyecto.model.Marca;
 import com.proyecto.model.Seccion;
 
 import lombok.AllArgsConstructor;
@@ -24,4 +25,6 @@ public class ArticuloDto{
 	private Double precioArticulo;
 
 	private Seccion seccion;
+	
+	private Marca marca;
 }

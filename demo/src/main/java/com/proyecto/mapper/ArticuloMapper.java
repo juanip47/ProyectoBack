@@ -14,7 +14,8 @@ public class ArticuloMapper {
 				.descripcionArticulo(articulo.getDescripcionArticulo())
 				.cantidadArticulo(articulo.getCantidadArticulo())
 				.precioArticulo(articulo.getPrecioArticulo())
-				.seccion(articulo.getSeccion()).build();
+				.seccion(articulo.getSeccion())
+				.marca(articulo.getMarca()).build();
 	}
 	
 	public Articulo mapArticuloDtoToArticulo(ArticuloDto articuloDto) {
@@ -23,7 +24,8 @@ public class ArticuloMapper {
 				.descripcionArticulo(articuloDto.getDescripcionArticulo())
 				.cantidadArticulo(articuloDto.getCantidadArticulo())
 				.precioArticulo(articuloDto.getPrecioArticulo())
-				.seccion(articuloDto.getSeccion()).build();
+				.seccion(articuloDto.getSeccion())
+				.marca(articuloDto.getMarca()).build();
 	}
 	
 		

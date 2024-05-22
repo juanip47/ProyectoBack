@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.proyecto.dto.ArticuloDto;
 import com.proyecto.mapper.ArticuloMapper;
 import com.proyecto.model.Articulo;
+import com.proyecto.model.Marca;
 import com.proyecto.model.Seccion;
 import com.proyecto.repository.ArticuloRepository;
+import com.proyecto.repository.MarcaRepository;
 import com.proyecto.repository.SeccionRepository;
 import com.proyecto.service.ArticuloService;
 
@@ -28,10 +30,12 @@ public class ArticuloServiceImpl implements ArticuloService {
 	Articulo articulo;
 	
 	@Autowired
-	Seccion seccion;
+	SeccionRepository seccionRepository;
 	
 	@Autowired
-	SeccionRepository seccionRepository;
+	MarcaRepository marcaRepository;
+	
+	
 	
 	@Override
 	public List<ArticuloDto> getArticulos() {
@@ -63,6 +67,17 @@ public class ArticuloServiceImpl implements ArticuloService {
 	}
 
 	@Override
+	public List<ArticuloDto> obtenerArticulosPorMarca(Integer idMarca) {
+		List<ArticuloDto> articuloDto = articuloRepository.obtenerArticulosPorMarcaId(idMarca).stream()
+				.map(articulo -> {
+					return articuloMapper.mapArticuloToArticuloDto(articulo);
+				})
+		.collect(Collectors.toList());
+		
+		return articuloDto;
+	}
+
+	@Override
 	@Transactional
 	public ArticuloDto insertArticulo(ArticuloDto articuloDto) {
 		Articulo articulo = new Articulo();
@@ -85,6 +100,20 @@ public class ArticuloServiceImpl implements ArticuloService {
 			articulo.setSeccion(seccion);
 		}
 		
+		Marca marca = marcaRepository.getSeccionById(articuloDto.getMarca().getIdMarca());
+		
+		if (marca == null) {
+			Marca marca2 = new Marca();
+			
+			marca2.setNombreMarca(articuloDto.getMarca().getNombreMarca());
+			
+			marcaRepository.save(marca2);
+			
+			articulo.setMarca(marca2);
+		} else {
+			articulo.setMarca(marca);
+		}
+		
 		Articulo articuloEncontrado = articuloRepository.buscarArticuloPorDescripcion(articulo.getDescripcionArticulo());
 		
 		if (articuloEncontrado != null) {
@@ -92,7 +121,8 @@ public class ArticuloServiceImpl implements ArticuloService {
 		} else {
 			articuloRepository.insertArticulo(articulo.getDescripcionArticulo(), articulo.getCantidadArticulo()
 					, articulo.getPrecioArticulo()
-					, articulo.getSeccion().getIdSeccion());;
+					, articulo.getSeccion().getIdSeccion()
+					, articulo.getMarca().getIdMarca());;
 		}
 		
 		return articuloMapper.mapArticuloToArticuloDto(articulo);
@@ -136,11 +166,11 @@ public class ArticuloServiceImpl implements ArticuloService {
 			articuloRepository.editArticuloPorId(articulo.getDescripcionArticulo(), articulo.getCantidadArticulo()
 					, articulo.getPrecioArticulo()
 					, articulo.getSeccion().getIdSeccion()
+					, articulo.getMarca().getIdMarca()
 					, articulo.getIdArticulo());
 		}
 		
 		return articuloMapper.mapArticuloToArticuloDto(articulo);
 	}
-	
 }
  

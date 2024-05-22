@@ -39,4 +39,8 @@ public class Articulo {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "idSeccion", referencedColumnName = "idSeccion")
   private Seccion seccion;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idMarca", referencedColumnName = "idMarca")
+  private Marca marca;
 }

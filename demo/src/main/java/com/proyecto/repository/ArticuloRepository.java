@@ -26,14 +26,19 @@ public interface ArticuloRepository extends CrudRepository<Articulo, Integer> {
 	@Query("SELECT a from Articulo a WHERE a.seccion.idSeccion=:idSeccion")
 	public List<Articulo> obtenerArticulosPorSeccionId(@Param("idSeccion") Long idSeccion);
 	
+	//Filtrar y mostrar articulos por marcas (por idMarca)
+	@Query("SELECT a from Articulo a WHERE a.marca.idMarca=:idMarca")
+	public List<Articulo> obtenerArticulosPorMarcaId(@Param("idMarca") Integer idMarca);
+	
 	//Insertar nuevos articulos
 	@Modifying
-	@Query(value = "INSERT into articulos (descripcion_articulo, cantidad_articulo, precio_Articulo, id_seccion) VALUES "
-			+ "(:descripcionArticulo, :cantidadArticulo, :precioArticulo, :idSeccion)", nativeQuery = true)
+	@Query(value = "INSERT into articulos (descripcion_articulo, cantidad_articulo, precio_Articulo, id_seccion, id_marca) "
+			+ "VALUES (:descripcionArticulo, :cantidadArticulo, :precioArticulo, :idSeccion, :idMarca)", nativeQuery = true)
 	void insertArticulo(@Param("descripcionArticulo") String descripcionArticulo
 			,@Param("cantidadArticulo") Integer cantidadArticulo
 			,@Param("precioArticulo") Double precioArticulo
-			,@Param("idSeccion") Long idSeccion);
+			,@Param("idSeccion") Long idSeccion
+			,@Param("idMarca") Integer idMarca);
 	
 	//Buscar articulo para comprobar si ya existe en la BBDD para hacer inserts (por descripcionArticulo)
 	@Query("SELECT a from Articulo a WHERE a.descripcionArticulo=:descripcionArticulo")
@@ -48,11 +53,12 @@ public interface ArticuloRepository extends CrudRepository<Articulo, Integer> {
 	@Modifying
 	@Query(value = "UPDATE articulos SET descripcion_articulo=:descripcionArticulo,"
 			+ "cantidad_articulo=:cantidadArticulo, precio_articulo=:precioArticulo, "
-			+ "id_seccion=:idSeccion WHERE id_articulo=:idArticulo", nativeQuery = true)
+			+ "id_seccion=:idSeccion, id_marca=:idMarca WHERE id_articulo=:idArticulo", nativeQuery = true)
 	void editArticuloPorId(@Param("descripcionArticulo") String descripcionArticulo
 			,@Param("cantidadArticulo") Integer cantidadArticulo
 			,@Param("precioArticulo") Double precioArticulo
 			,@Param("idSeccion") Long idSeccion
+			,@Param("idMarca") Integer idMarca
 			,@Param("idArticulo") Integer idArticulo);
 	
 	//Obtener articulo por su id

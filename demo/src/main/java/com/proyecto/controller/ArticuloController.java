@@ -45,6 +45,12 @@ public class ArticuloController {
 	  return new ResponseEntity<>(articulosFiltrados, HttpStatus.OK);
   }
   
+  @GetMapping("/articulos/marca")
+  public ResponseEntity<List<ArticuloDto>> obtenerArticulosPorMarca(@RequestParam("idMarca") Integer idMarca){
+	  List<ArticuloDto> articulosFiltrados = articuloService.obtenerArticulosPorMarca(idMarca);
+	  return new ResponseEntity<>(articulosFiltrados, HttpStatus.OK);
+  }
+  
   @PostMapping("/nuevoArticulo")
   public ResponseEntity<String> insertArticulo(@RequestBody ArticuloDto articuloDto){
 	  articuloService.insertArticulo(articuloDto);

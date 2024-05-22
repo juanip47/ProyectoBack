@@ -17,4 +17,8 @@ public interface MarcaRepository extends CrudRepository<Marca, Integer> {
 	@Query("SELECT m from Marca m")
 	public List<Marca> getMarcas();
 	
+	//Obtener seccion por su id
+	@Query("SELECT m from Marca m WHERE m.idMarca=:idMarca")
+	public Marca getSeccionById(@Param("idMarca") Integer idMarca);
+	
 }

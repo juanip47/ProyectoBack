@@ -45,6 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario usuario = new Usuario();
 		
 		usuario.setCorreoUsuario(usuarioDto.getCorreoUsuario());
+		usuario.setNombreUsuario(usuarioDto.getNombreUsuario());
 		usuario.setContraseniaUsuario(usuarioDto.getContraseniaUsuario());
 		
 		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuario.getCorreoUsuario());
@@ -52,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (usuarioEncontrado != null) {
 			throw new RuntimeException("El usuario ya existe");
 		} else {
-			usuarioRepository.insertUsuario(usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
+			usuarioRepository.insertUsuario(usuario.getNombreUsuario(), usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
 		}
 		
 		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
@@ -64,6 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Usuario usuario = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuarioDto.getCorreoUsuario());
 		
 		usuario.setCorreoUsuario(usuarioDto.getCorreoUsuario());
+		usuario.setNombreUsuario(usuarioDto.getNombreUsuario());
 		usuario.setContraseniaUsuario(usuarioDto.getContraseniaUsuario());
 		
 		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuario.getCorreoUsuario());

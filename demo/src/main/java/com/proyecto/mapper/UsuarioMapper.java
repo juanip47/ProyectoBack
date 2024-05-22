@@ -11,7 +11,8 @@ public class UsuarioMapper {
 	public UsuarioDto mapUsuarioToUsuarioDto(Usuario usuario) {
 		return UsuarioDto.builder()
 				.correoUsuario(usuario.getCorreoUsuario())
-				.contraseniaUsuario(usuario.getContraseniaUsuario()).build();
+				.contraseniaUsuario(usuario.getContraseniaUsuario())
+				.nombreUsuario(usuario.getNombreUsuario()).build();
 	}
 
 }

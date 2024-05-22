@@ -3,6 +3,8 @@ package com.proyecto.model;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,15 +18,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Component
-@Table(name = "usuarios")
+@Table(name = "marcas")
 
-public class Usuario {
+public class Marca {
 	
 	@Id
-	private String correoUsuario;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer idMarca;
 	
-	private String nombreUsuario;
-	
-	private String contraseniaUsuario;
+	String nombreMarca;
 
 }

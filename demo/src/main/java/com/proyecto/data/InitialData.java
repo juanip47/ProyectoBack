@@ -5,9 +5,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.proyecto.model.Articulo;
+import com.proyecto.model.Marca;
 import com.proyecto.model.Seccion;
 import com.proyecto.model.Usuario;
 import com.proyecto.repository.ArticuloRepository;
+import com.proyecto.repository.MarcaRepository;
 import com.proyecto.repository.SeccionRepository;
 import com.proyecto.repository.UsuarioRepository;
 
@@ -21,6 +23,9 @@ public class InitialData implements CommandLineRunner{
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	MarcaRepository marcaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,6 +62,10 @@ public class InitialData implements CommandLineRunner{
 //		hector.setCorreoUsuario("sanchorodriguezhector@gmail.com");
 //		hector.setContraseniaUsuario("admin");
 //		usuarioRepository.save(hector);
+		
+//		Marca cocaCola = new Marca();
+//		cocaCola.setNombreMarca("The Coca-Cola Company");
+//		marcaRepository.save(cocaCola);
 		
 		
 	}

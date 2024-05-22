@@ -24,9 +24,10 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String>{
 	
 	//Insertar nuevos usuarios
 	@Modifying
-	@Query(value = "INSERT into usuarios (correo_usuario, contrasenia_usuario) VALUES "
-			+ "(:correoUsuario, :contraseniaUsuario)", nativeQuery = true)
-	void insertUsuario(@Param("correoUsuario") String correoUsuario
+	@Query(value = "INSERT into usuarios (nombre_usuario, correo_usuario, contrasenia_usuario) VALUES "
+			+ "(:nombreUsuario, :correoUsuario, :contraseniaUsuario)", nativeQuery = true)
+	void insertUsuario(@Param("nombreUsuario") String nombreUsuario
+			,@Param("correoUsuario") String correoUsuario
 			,@Param("contraseniaUsuario") String contraseniaUsuario);
 	
 	//Buscar usuario para comprobar si ya existe en la BBDD para hacer inserts (por correoUsuario)

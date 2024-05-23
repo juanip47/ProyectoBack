@@ -33,4 +33,28 @@ public class MarcaServiceImpl implements MarcaService {
 		return marcasDto;
 	}
 
+	@Override
+	@Transactional
+	public void deleteMarca(Integer idMarca) {
+		marcaRepository.eliminarMarcaPorId(idMarca);
+		
+	}
+
+	@Override
+	@Transactional
+	public MarcaDto insertMarca(MarcaDto marcaDto) {
+		Marca marca = new Marca();
+		
+		marca.setNombreMarca(marcaDto.getNombreMarca());
+		
+		Marca marcaEncontrada = marcaRepository.buscarMarcaPorNombreMarca(marca.getNombreMarca());
+		
+		if (marcaEncontrada != null) {
+			throw new RuntimeException("La marca ya existe");
+		} else {
+			marcaRepository.insertMarca(marca.getNombreMarca());
+		}
+		return marcaMapper.mapMarcaToMarcaDto(marca);
+	}
+
 }

@@ -36,4 +36,16 @@ public class MarcaController {
 		return new ResponseEntity<>(marcas, HttpStatus.OK);
 	}
 	
+	@DeleteMapping("/marca")
+	public ResponseEntity<String> deleteMarca(@RequestParam("idMarca") Integer idMarca) {
+		marcaService.deleteMarca(idMarca);
+		return ResponseEntity.ok("Marca" + GeneralConstants.ELIMINACION);
+	}
+	
+	@PostMapping("/nuevaMarca")
+	public ResponseEntity<String> insertMarca(@RequestBody MarcaDto marcaDto) {
+		marcaService.insertMarca(marcaDto);
+		return ResponseEntity.ok("Marca" + GeneralConstants.CREACION);
+	}
+	
 }

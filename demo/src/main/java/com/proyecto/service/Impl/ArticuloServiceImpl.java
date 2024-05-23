@@ -100,7 +100,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 			articulo.setSeccion(seccion);
 		}
 		
-		Marca marca = marcaRepository.getSeccionById(articuloDto.getMarca().getIdMarca());
+		Marca marca = marcaRepository.getMarcaById(articuloDto.getMarca().getIdMarca());
 		
 		if (marca == null) {
 			Marca marca2 = new Marca();

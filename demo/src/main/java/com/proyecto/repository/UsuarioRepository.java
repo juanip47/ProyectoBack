@@ -36,8 +36,13 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String>{
 	
 	//Modificar usuarios que ya existen en la BBDD (por su correo)
 	@Modifying
-	@Query(value = "UPDATE usuarios SET correo_usuario=:correoUsuario, contrasenia_usuario=:contraseniaUsuario "
+	@Query(value = "UPDATE usuarios SET nombre_usuario=:nombreUsuario "
 			+ "WHERE correo_usuario=:correoUsuario", nativeQuery = true)
 	void editUsuarioPorCorreo(@Param("correoUsuario") String correoUsuario
-			,@Param("contraseniaUsuario") String contraseniaUsuario);
+			,@Param("nombreUsuario") String nombreUsuario);
+	
+	//Buscar usuario para comprobar si ya existe en la BBDD para hacer inserts (por nombreUsuario/correoUsuario)
+	@Query("SELECT u from Usuario u WHERE u.nombreUsuario=:nombreUsuario AND u.correoUsuario!=:correoUsuario")
+	Usuario buscarUsuarioPorNombreConCorreo(@Param("correoUsuario") String correoUsuario
+			,@Param("nombreUsuario") String nombreUsuario);
 }

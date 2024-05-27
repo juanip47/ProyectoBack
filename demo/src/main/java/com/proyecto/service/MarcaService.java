@@ -11,5 +11,7 @@ public interface MarcaService {
 	void deleteMarca(Integer idMarca);
 	
 	MarcaDto insertMarca(MarcaDto marcaDto);
+	
+	MarcaDto editMarcaPorId(MarcaDto marcaDto);
 
 }

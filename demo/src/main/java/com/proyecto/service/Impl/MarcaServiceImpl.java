@@ -57,4 +57,23 @@ public class MarcaServiceImpl implements MarcaService {
 		return marcaMapper.mapMarcaToMarcaDto(marca);
 	}
 
+	@Override
+	@Transactional
+	public MarcaDto editMarcaPorId(MarcaDto marcaDto) {
+		Marca marca = marcaRepository.getMarcaById(marcaDto.getIdMarca());
+		
+		marca.setNombreMarca(marcaDto.getNombreMarca());
+		
+		Marca marcaEncontrada = marcaRepository.buscarMarcaPorNombreConId(marca.getNombreMarca(), marca.getIdMarca());
+		
+		if (marcaEncontrada != null) {
+			throw new RuntimeException("La marca ya existe");
+		} else {
+			marcaRepository.editArticuloPorId(marca.getNombreMarca(), marca.getIdMarca());
+		}
+		return marcaMapper.mapMarcaToMarcaDto(marca);
+	}
+
+	
+
 }

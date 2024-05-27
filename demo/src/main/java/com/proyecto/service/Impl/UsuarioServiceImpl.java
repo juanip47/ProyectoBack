@@ -64,11 +64,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public UsuarioDto editUsuario(UsuarioDto usuarioDto) {
 		Usuario usuario = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuarioDto.getCorreoUsuario());
 		
-		usuario.setCorreoUsuario(usuarioDto.getCorreoUsuario());
 		usuario.setNombreUsuario(usuarioDto.getNombreUsuario());
-		usuario.setContraseniaUsuario(usuarioDto.getContraseniaUsuario());
 		
-		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorCorreoUsuario(usuario.getCorreoUsuario());
+		Usuario usuarioEncontrado = usuarioRepository.buscarUsuarioPorNombreConCorreo(usuario.getCorreoUsuario()
+				, usuario.getNombreUsuario());
 		
 		if (usuarioEncontrado != null) {
 			throw new RuntimeException("El usuario ya existe");

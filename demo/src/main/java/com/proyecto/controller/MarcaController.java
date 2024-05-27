@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.dto.MarcaDto;
-import com.proyecto.dto.UsuarioDto;
-import com.proyecto.model.Marca;
 import com.proyecto.service.MarcaService;
-import com.proyecto.service.UsuarioService;
 
 import com.proyecto.common.GeneralConstants;
 
@@ -46,6 +43,12 @@ public class MarcaController {
 	public ResponseEntity<String> insertMarca(@RequestBody MarcaDto marcaDto) {
 		marcaService.insertMarca(marcaDto);
 		return ResponseEntity.ok("Marca" + GeneralConstants.CREACION);
+	}
+	
+	@PutMapping("/editarMarca")
+	public ResponseEntity<String> editMarca(@RequestBody MarcaDto marcaDto) {
+		marcaService.editMarcaPorId(marcaDto);
+		return ResponseEntity.ok("Marca" + GeneralConstants.MODIFICACION);
 	}
 	
 }

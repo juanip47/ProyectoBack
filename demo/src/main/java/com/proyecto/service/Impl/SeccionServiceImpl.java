@@ -66,8 +66,6 @@ public class SeccionServiceImpl implements SeccionService {
 		
 		Seccion seccionEncontrada = seccionRepository.buscarSeccionPorNombreSeccionConId(seccion.getNombreSeccion()
 				, seccion.getIdSeccion());
-				
-		System.out.println(seccionEncontrada);
 		
 		if (seccionEncontrada != null) {
 			throw new RuntimeException("La sección ya existe");

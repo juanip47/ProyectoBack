@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.proyecto.model.Articulo;
 import com.proyecto.model.Marca;
 import com.proyecto.model.Marca;
 
@@ -35,4 +36,15 @@ public interface MarcaRepository extends CrudRepository<Marca, Integer> {
 	//Buscar marca para comprobar si ya existe en la BBDD para hacer inserts (por nombreMarca)
 	@Query("SELECT s from Marca s WHERE s.nombreMarca=:nombreMarca")
 	public Marca buscarMarcaPorNombreMarca(@Param("nombreMarca") String nombreMarca);
+	
+	//Buscar marca para comprobar si ya existe en la BBDD para hacer updates (por nombreMarca/idMarca) 
+	@Query("SELECT m from Marca m WHERE m.nombreMarca=:nombreMarca AND m.idMarca!=:idMarca")
+	public Marca buscarMarcaPorNombreConId(@Param("nombreMarca") String nombreMarca
+			,@Param("idMarca") Integer idMarca);
+		
+	//Modificar articulos que ya existen en la BBDD (por su id)
+	@Modifying
+	@Query(value = "UPDATE marcas SET nombre_marca=:nombreMarca WHERE id_marca=:idMarca", nativeQuery = true)
+	void editArticuloPorId(@Param("nombreMarca") String nombreMarca
+				,@Param("idMarca") Integer idMarca);
 }

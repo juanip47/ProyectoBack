@@ -53,7 +53,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (usuarioEncontrado != null) {
 			throw new RuntimeException("El usuario ya existe");
 		} else {
-			usuarioRepository.insertUsuario(usuario.getNombreUsuario(), usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
+			UsuarioDto usuarioCifrado = usuarioMapper.mapUsuarioToUsuarioDtoCifrado(usuario);
+			usuarioRepository.insertUsuario(usuarioCifrado.getNombreUsuario(), usuarioCifrado.getCorreoUsuario(), usuarioCifrado.getContraseniaUsuario());
 		}
 		
 		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);
@@ -72,7 +73,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if (usuarioEncontrado != null) {
 			throw new RuntimeException("El usuario ya existe");
 		} else {
-			usuarioRepository.editUsuarioPorCorreo(usuario.getCorreoUsuario(), usuario.getContraseniaUsuario());
+			usuarioRepository.editUsuarioPorCorreo(usuario.getCorreoUsuario(), usuario.getNombreUsuario());
 		}
 		
 		return usuarioMapper.mapUsuarioToUsuarioDto(usuario);

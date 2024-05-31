@@ -39,6 +39,9 @@ dependencies {
  	//SWAGGER 
  	
  	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+ 	
+ 	//SHA256
+ 	implementation 'com.google.guava:guava:29.0-jre'
 }
 
 tasks.named('test') {

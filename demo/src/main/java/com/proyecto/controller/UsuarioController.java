@@ -54,6 +54,6 @@ public class UsuarioController {
 	@PutMapping("/editarUsuario")
 	ResponseEntity<String> editUsuario(@RequestBody UsuarioDto usuarioDto) {
 		usuarioService.editUsuario(usuarioDto);
-		return ResponseEntity.ok("Usuario" + GeneralConstants.CREACION);
+		return ResponseEntity.ok("Usuario" + GeneralConstants.MODIFICACION);
 	}
 }

@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<UsuarioDto> getUsuarios() {
 		List<UsuarioDto> usuariosDto = usuarioRepository.getUsuarios().stream()
 				.map((usuario) -> usuarioMapper.mapUsuarioToUsuarioDtoOfuscado(usuario))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList());		
 		return usuariosDto;
 	}
 

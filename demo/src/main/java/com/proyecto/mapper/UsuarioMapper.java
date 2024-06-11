@@ -48,7 +48,8 @@ public class UsuarioMapper {
 		
 		
 		return UsuarioDto.builder()
-				.correoUsuario(correoOfuscado)
+				.correoUsuario(usuario.getCorreoUsuario())
+				.correoUsuarioOfuscado(correoOfuscado)
 				.contraseniaUsuario(usuario.getContraseniaUsuario())
 				.nombreUsuario(usuario.getNombreUsuario()).build();
 	}

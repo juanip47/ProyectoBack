@@ -18,4 +18,6 @@ public class UsuarioDto {
 	
 	private String contraseniaUsuario;
 	
+	private String correoUsuarioOfuscado;
+	
 }

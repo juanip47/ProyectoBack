@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public List<UsuarioDto> getUsuarios() {
 		List<UsuarioDto> usuariosDto = usuarioRepository.getUsuarios().stream()
-				.map((usuario) -> usuarioMapper.mapUsuarioToUsuarioDto(usuario))
+				.map((usuario) -> usuarioMapper.mapUsuarioToUsuarioDtoOfuscado(usuario))
 				.collect(Collectors.toList());
 		return usuariosDto;
 	}
